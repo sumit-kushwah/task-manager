@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todo-8370f": {
+      "hosting": {
+        "task-manager": [
+          "task-ksumit"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todo-8370f"
+  }
+}

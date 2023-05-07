@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    matTooltip="{{ sideNavOpened ? 'Close Menu' : 'Open Menu' }}"
+    (click)="sideNavOpened = !sideNavOpened"
+    aria-label="icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    matTooltip="Go to home"
+    aria-label="icon-button with home icon"
+  >
+    <mat-icon>home</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <span>{{ toolbarTitle }}</span>
+  </button>
+
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    (click)="openDialog()"
+    matTooltip="Add Task"
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>add_task</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    matTooltip="{{ userLoggedIn ? 'Open Profile Menu' : 'Login' }}"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>{{ userLoggedIn ? "person" : "login" }}</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer
+    #drawer
+    class="example-sidenav"
+    mode="side"
+    opened="{{ sideNavOpened }}"
+  >
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button>Toggle sidenav</button>
+  </div>
+</mat-drawer-container>
