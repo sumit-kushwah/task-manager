@@ -1,0 +1,41 @@
+.add-dialog-div {
+  margin: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.bottom-part {
+  display: flex;
+  .date-picker {
+    margin-right: 10px;
+  }
+
+  .white {
+    color: white;
+  }
+
+  .orange {
+    color: orange;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .blue {
+    color: blue;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  button {
+    width: 100%;
+  }
+  .add-button {
+    display: block;
+    margin-right: 10px;
+  }
+}

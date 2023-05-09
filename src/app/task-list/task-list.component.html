@@ -1,1 +1,16 @@
-<p>task-list works!</p>
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>To do</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="todo"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of todo" cdkDrag>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>

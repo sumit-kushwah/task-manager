@@ -1,1 +1,69 @@
+<div class="add-dialog-div">
+  <!-- Task Name Input -->
+  <mat-form-field appearance="outline" width="100">
+    <mat-label>Task name</mat-label>
+    <input matInput placeholder="Task Name" />
+  </mat-form-field>
 
+  <!-- Task Description Input -->
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+
+  <!-- Project Select Input -->
+  <mat-form-field appearance="outline">
+    <mat-label>Project</mat-label>
+    <mat-select [(ngModel)]="selectedProject" name="project">
+      <mat-option *ngFor="let project of projects" [value]="project.id">
+        {{ project.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Due date picker and priority select -->
+  <div class="bottom-part">
+    <!-- Due date picker -->
+    <mat-form-field class="date-picker" appearance="outline">
+      <mat-label>Due date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="dueDate" />
+      <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Priority Selector -->
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="selectedPriority" name="priority">
+        <mat-option
+          *ngFor="let priority of priorities"
+          [value]="priority.value"
+        >
+          {{ priority.viewValue }}
+          <mat-icon [ngStyle]="{ color: priority.color }">{{
+            priority.icon
+          }}</mat-icon>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- action buttons -->
+  <div class="action-buttons">
+    <button
+      mat-raised-button
+      color="primary"
+      class="add-button"
+      (click)="onAddTask()"
+    >
+      <mat-icon>add_task</mat-icon>
+    </button>
+    <button mat-raised-button color="warn" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>

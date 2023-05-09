@@ -11,22 +11,43 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ProjectListingModule } from '../project-listing/project-listing.module';
+import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { TaskListComponent } from '../task-list/task-list.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AddTaskDialogComponent,
+    TaskListComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
+    ProjectListingModule,
+    DragDropModule,
     MatToolbarModule,
     MatIconModule,
+    MatDatepickerModule,
     MatButtonModule,
+    MatNativeDateModule,
+    MatSelectModule,
     MatSidenavModule,
     MatTooltipModule,
     MatDialogModule,
     FormsModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatMenuModule,
     MatFormFieldModule,
   ]
 })

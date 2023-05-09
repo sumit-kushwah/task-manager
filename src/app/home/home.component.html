@@ -33,6 +33,7 @@
   <button
     mat-icon-button
     class="example-icon"
+    [matMenuTriggerFor]="menu"
     matTooltip="{{ userLoggedIn ? 'Open Profile Menu' : 'Login' }}"
     aria-label="Example icon-button with share icon"
   >
@@ -47,14 +48,33 @@
     mode="side"
     opened="{{ sideNavOpened }}"
   >
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+    <app-project-listing [projects]="projectsDetail"></app-project-listing>
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <button type="button" mat-button>Toggle sidenav</button>
+    <app-task-list></app-task-list>
   </div>
 </mat-drawer-container>
+
+<mat-menu #menu="matMenu">
+  <!-- <button mat-menu-item>
+    Manage Account
+    <mat-icon>manage_accounts</mat-icon>
+  </button> -->
+  <h1 mat-menu-item disabled style="margin: 0">Your Workspaces</h1>
+  <button mat-menu-item (click)="setWorkspace('Personal')">
+    Personal
+    <mat-icon>{{
+      selectedWorkspace == "Personal" ? "check" : "empty"
+    }}</mat-icon>
+  </button>
+  <button mat-menu-item (click)="setWorkspace('Work')">
+    Work
+    <mat-icon>{{ selectedWorkspace == "Work" ? "check" : "empty" }}</mat-icon>
+  </button>
+
+  <button mat-menu-item>
+    Logout
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-menu>

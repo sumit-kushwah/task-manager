@@ -1,8 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
+import { Auth, authState, user } from '@angular/fire/auth';
 import { ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
+import { map } from 'rxjs';
 
 const isUserLoggedIn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  return false;
+  const auth = inject(Auth);
+  const user$ = user(auth);
+  return user$.pipe(map(user => !!user));
 }
 
 const routes: Routes = [
