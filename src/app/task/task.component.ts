@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent {
+  @Input() title: string = '';
 
+  editMode: boolean = false;
 }
+

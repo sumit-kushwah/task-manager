@@ -11,6 +11,13 @@ export class TaskListComponent {
 
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
+  filters: { name: string, type: string, selected: boolean}[] = [
+    {name: "To do", type: "status", selected: true},
+    {name: "In progress", type: "status", selected: false},
+    {name: "Blocked", type: "status", selected: false},
+    {name: "Completed", type: "status", selected: false},
+  ]
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);

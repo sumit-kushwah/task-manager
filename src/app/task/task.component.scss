@@ -1,0 +1,38 @@
+p {
+  margin: 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  p, button, input, mat-icon {
+    display: block;
+    border: none;
+
+  }
+
+  // button {
+  //   display: none;
+  // }
+  p {
+    line-height: 48px;
+  }
+}
+
+div:hover {
+  button {
+    display: block;
+  }
+
+  // input:focus {
+  //   outline: none;
+  // }
+}

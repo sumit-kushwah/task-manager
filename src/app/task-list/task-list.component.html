@@ -1,6 +1,12 @@
 <div cdkDropListGroup>
   <div class="example-container">
-    <h2>To do</h2>
+    <div class="chip-box">
+      <mat-chip-listbox aria-label="Filter Selection">
+        <mat-chip-option *ngFor="let filter of filters" color="primary" [selected]="filter.selected">
+          {{ filter.name }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
 
     <div
       cdkDropList
@@ -9,7 +15,13 @@
       (cdkDropListDropped)="drop($event)"
     >
       <div class="example-box" *ngFor="let item of todo" cdkDrag>
-        <div></div>
+        <div class="example-handle" cdkDragHandle>
+          <mat-icon class="material-symbols-outlined">drag_indicator</mat-icon>
+        </div>
+        <div class="task-item">
+          <app-task [title]="item"></app-task>
+          <mat-divider></mat-divider>
+        </div>
       </div>
     </div>
   </div>

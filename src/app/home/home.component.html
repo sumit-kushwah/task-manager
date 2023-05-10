@@ -6,7 +6,7 @@
     (click)="sideNavOpened = !sideNavOpened"
     aria-label="icon-button with menu icon"
   >
-    <mat-icon>menu</mat-icon>
+    <mat-icon class="material-symbols-outlined">menu</mat-icon>
   </button>
   <button
     mat-icon-button
@@ -14,7 +14,7 @@
     matTooltip="Go to home"
     aria-label="icon-button with home icon"
   >
-    <mat-icon>home</mat-icon>
+    <mat-icon class="material-symbols-outlined">home</mat-icon>
   </button>
   <button mat-icon-button>
     <span>{{ toolbarTitle }}</span>
@@ -28,7 +28,7 @@
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
   >
-    <mat-icon>add_task</mat-icon>
+    <mat-icon class="material-symbols-outlined">add_task</mat-icon>
   </button>
   <button
     mat-icon-button
@@ -37,7 +37,7 @@
     matTooltip="{{ userLoggedIn ? 'Open Profile Menu' : 'Login' }}"
     aria-label="Example icon-button with share icon"
   >
-    <mat-icon>{{ userLoggedIn ? "person" : "login" }}</mat-icon>
+    <mat-icon class="material-symbols-outlined">{{ userLoggedIn ? "person" : "login" }}</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -64,17 +64,17 @@
   <h1 mat-menu-item disabled style="margin: 0">Your Workspaces</h1>
   <button mat-menu-item (click)="setWorkspace('Personal')">
     Personal
-    <mat-icon>{{
-      selectedWorkspace == "Personal" ? "check" : "empty"
+    <mat-icon class="material-symbols-outlined">{{
+      selectedWorkspace == "Personal" ? "check" : ""
     }}</mat-icon>
   </button>
   <button mat-menu-item (click)="setWorkspace('Work')">
     Work
-    <mat-icon>{{ selectedWorkspace == "Work" ? "check" : "empty" }}</mat-icon>
+    <mat-icon class="material-symbols-outlined">{{ selectedWorkspace == "Work" ? "check" : "" }}</mat-icon>
   </button>
-
+  <mat-divider></mat-divider>
   <button mat-menu-item>
     Logout
-    <mat-icon>logout</mat-icon>
+    <mat-icon class="material-symbols-outlined">logout</mat-icon>
   </button>
 </mat-menu>

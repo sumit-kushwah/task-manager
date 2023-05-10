@@ -1,18 +1,18 @@
 <div class="add-dialog-div">
   <!-- Task Name Input -->
-  <mat-form-field appearance="outline" width="100">
+  <mat-form-field appearance="fill" width="100">
     <mat-label>Task name</mat-label>
     <input matInput placeholder="Task Name" />
   </mat-form-field>
 
   <!-- Task Description Input -->
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
     <textarea matInput></textarea>
   </mat-form-field>
 
   <!-- Project Select Input -->
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="fill">
     <mat-label>Project</mat-label>
     <mat-select [(ngModel)]="selectedProject" name="project">
       <mat-option *ngFor="let project of projects" [value]="project.id">
@@ -60,10 +60,10 @@
       class="add-button"
       (click)="onAddTask()"
     >
-      <mat-icon>add_task</mat-icon>
+      <mat-icon class="material-symbols-outlined">add_task</mat-icon>
     </button>
     <button mat-raised-button color="warn" (click)="onCancel()">
-      <mat-icon>close</mat-icon>
+      <mat-icon class="material-symbols-outlined">close</mat-icon>
     </button>
   </div>
 </div>

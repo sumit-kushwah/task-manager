@@ -67,7 +67,7 @@ export class HomeComponent {
 
   openDialog() {
     this.dialog.open(AddTaskDialogComponent, {
-      width: '500px',
+      width: '600px',
       data: {
         animal: 'panda',
       },

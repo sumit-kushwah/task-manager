@@ -21,6 +21,9 @@ import { TaskListComponent } from '../task-list/task-list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
+import { TaskComponent } from '../task/task.component';
 
 
 
@@ -28,7 +31,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
   declarations: [
     HomeComponent,
     AddTaskDialogComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskComponent
   ],
   imports: [
     CommonModule,
@@ -39,10 +43,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatChipsModule,
     MatNativeDateModule,
     MatSelectModule,
     MatSidenavModule,
     MatTooltipModule,
+    MatDividerModule,
     MatDialogModule,
     FormsModule,
     MatExpansionModule,
