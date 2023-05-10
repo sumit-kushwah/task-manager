@@ -22,7 +22,25 @@ export interface Project {
 }
 
 const personalProjects: Project[] = [
-  { name: 'Default', id: 'default', sections: [] },
+  {
+    name: 'Default', id: 'default', sections: [
+      {
+        name: 'All',
+        id: 'default',
+        tasks: []
+      },
+      {
+        name: 'Today',
+        id: 'default',
+        tasks: []
+      },
+      {
+        name: 'Upcoming',
+        id: 'default',
+        tasks: []
+      },
+    ]
+  },
   { name: 'Personal Project 1', id: 'default', sections: [] },
   { name: 'Personal Project 2', id: 'default', sections: [] },
   { name: 'Personal Project 3', id: 'default', sections: [] },

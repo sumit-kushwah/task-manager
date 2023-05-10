@@ -1,31 +1,37 @@
 <div>
-  <div>
-    <div *ngIf="!editMode">
+  <div style="width: 100%">
+    <div *ngIf="!editMode" style="width: 100%">
       <button mat-icon-button>
         <!-- <mat-icon hover-completed class="material-symbols-outlined">check_circle</mat-icon> -->
-        <mat-icon hover-completed class="material-symbols-outlined">circle</mat-icon>
+        <mat-icon hover-completed class="material-symbols-outlined"
+          >circle</mat-icon
+        >
       </button>
       <!-- <s><p (click)="editMode = !editMode">{{title}}</p></s> -->
-      <p (click)="editMode = !editMode">{{title}}</p>
-
+      <p (click)="openEditDialog()">{{ task.name }}</p>
     </div>
-    <div *ngIf="editMode">
-      <input type="text" [(ngModel)]="title">
-    <button mat-icon-button (click)="editMode = !editMode">
-      <mat-icon class="material-symbols-outlined">check</mat-icon>
-    </button>
-    <button mat-icon-button (click)="editMode = !editMode">
-      <mat-icon class="material-symbols-outlined">cancel</mat-icon>
-    </button>
-    </div>
+    <!-- <div *ngIf="editMode">
+      <input type="text" [(ngModel)]="task.name" />
+      <button mat-icon-button (click)="editMode = !editMode">
+        <mat-icon class="material-symbols-outlined">check</mat-icon>
+      </button>
+      <button mat-icon-button (click)="editMode = !editMode">
+        <mat-icon class="material-symbols-outlined">cancel</mat-icon>
+      </button>
+    </div> -->
   </div>
 
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <button
+    class="menu-button"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu"
+  >
     <mat-icon class="material-symbols-outlined">more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
-      <mat-icon >empty</mat-icon>
+      <mat-icon>empty</mat-icon>
       <span>Completed</span>
     </button>
     <button mat-menu-item>
@@ -42,4 +48,3 @@
     </button>
   </mat-menu>
 </div>
-

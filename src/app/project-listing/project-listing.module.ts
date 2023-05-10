@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ProjectListingComponent } from './project-listing.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
   ],
   imports: [
     CommonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [ProjectListingComponent]
 })

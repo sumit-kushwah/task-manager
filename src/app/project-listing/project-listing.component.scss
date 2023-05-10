@@ -1,0 +1,11 @@
+.add-section {
+  display: flex;
+  p, button {
+    display: block;
+    height: 48px;
+  }
+
+  p {
+    line-height: 48px;
+  }
+}

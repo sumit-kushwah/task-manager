@@ -1,13 +1,27 @@
-<mat-accordion>
-  <mat-expansion-panel hideToggle *ngFor="let project of projects">
-    <mat-expansion-panel-header>
-      <mat-panel-title> {{ project.name }} </mat-panel-title>
-      <!-- <mat-panel-description>
+<mat-expansion-panel *ngFor="let project of projects">
+  <mat-expansion-panel-header>
+    <mat-panel-title> {{ project.name }} </mat-panel-title>
+    <!-- <mat-panel-description>
         This is a summary of the content
       </mat-panel-description> -->
-      <p *ngFor="let section of project.sections">
-        {{ section }}
-      </p>
-    </mat-expansion-panel-header>
-  </mat-expansion-panel>
-</mat-accordion>
+  </mat-expansion-panel-header>
+  <div>
+    <p *ngFor="let section of project.sections">
+      {{ section }}
+    </p>
+  </div>
+
+  <div class="add-section" *ngIf="project.name != 'Default'">
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-outlined">add</mat-icon>
+    </button>
+    <p>Add Section</p>
+  </div>
+</mat-expansion-panel>
+
+<div class="add-section">
+  <button mat-icon-button>
+    <mat-icon class="material-symbols-outlined">add</mat-icon>
+  </button>
+  <p>Add Project</p>
+</div>

@@ -2,7 +2,11 @@
   <div class="example-container">
     <div class="chip-box">
       <mat-chip-listbox aria-label="Filter Selection">
-        <mat-chip-option *ngFor="let filter of filters" color="primary" [selected]="filter.selected">
+        <mat-chip-option
+          *ngFor="let filter of filters"
+          color="primary"
+          [selected]="filter.selected"
+        >
           {{ filter.name }}
         </mat-chip-option>
       </mat-chip-listbox>
@@ -10,17 +14,28 @@
 
     <div
       cdkDropList
-      [cdkDropListData]="todo"
+      [cdkDropListData]="tasks"
       class="example-list"
       (cdkDropListDropped)="drop($event)"
     >
-      <div class="example-box" *ngFor="let item of todo" cdkDrag>
+      <div class="example-box" *ngFor="let task of tasks" cdkDrag>
         <div class="example-handle" cdkDragHandle>
           <mat-icon class="material-symbols-outlined">drag_indicator</mat-icon>
         </div>
         <div class="task-item">
-          <app-task [title]="item"></app-task>
+          <app-task [task]="task"></app-task>
           <mat-divider></mat-divider>
+        </div>
+      </div>
+      <div class="add-task">
+        <div style="visibility: hidden">
+          <mat-icon class="material-symbols-outlined">drag_indicator</mat-icon>
+        </div>
+        <div class="add-task-body" (click)="openAddTaskDialog()">
+          <button mat-icon-button>
+            <mat-icon class="material-symbols-outlined">add</mat-icon>
+          </button>
+          <p>Add Task</p>
         </div>
       </div>
     </div>

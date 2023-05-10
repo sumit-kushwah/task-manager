@@ -19,6 +19,33 @@
   display: block;
 }
 
+.add-task {
+  display: flex;
+  width: 100%;
+
+  .add-task-body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  p, mat-icon {
+    display: block;
+    height: 48px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  p {
+    line-height: 48px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.add-task-body:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
 .example-box {
   // border-radius: 4px;
   width: 100%;

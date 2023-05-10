@@ -37,7 +37,9 @@
     matTooltip="{{ userLoggedIn ? 'Open Profile Menu' : 'Login' }}"
     aria-label="Example icon-button with share icon"
   >
-    <mat-icon class="material-symbols-outlined">{{ userLoggedIn ? "person" : "login" }}</mat-icon>
+    <mat-icon class="material-symbols-outlined">{{
+      userLoggedIn ? "person" : "login"
+    }}</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -70,7 +72,9 @@
   </button>
   <button mat-menu-item (click)="setWorkspace('Work')">
     Work
-    <mat-icon class="material-symbols-outlined">{{ selectedWorkspace == "Work" ? "check" : "" }}</mat-icon>
+    <mat-icon class="material-symbols-outlined">{{
+      selectedWorkspace == "Work" ? "check" : ""
+    }}</mat-icon>
   </button>
   <mat-divider></mat-divider>
   <button mat-menu-item>

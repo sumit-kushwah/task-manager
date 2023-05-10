@@ -19,17 +19,19 @@ div {
 
   }
 
-  // button {
-  //   display: none;
-  // }
+  .menu-button {
+    visibility: hidden;
+  }
+
   p {
+    width: 100%;
     line-height: 48px;
   }
 }
 
 div:hover {
-  button {
-    display: block;
+  .menu-button {
+    visibility: visible;
   }
 
   // input:focus {

@@ -2,13 +2,13 @@
   <!-- Task Name Input -->
   <mat-form-field appearance="fill" width="100">
     <mat-label>Task name</mat-label>
-    <input matInput placeholder="Task Name" />
+    <input matInput placeholder="Task Name" [(ngModel)]="task.name" />
   </mat-form-field>
 
   <!-- Task Description Input -->
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput [(ngModel)]="task.description"></textarea>
   </mat-form-field>
 
   <!-- Project Select Input -->
@@ -38,15 +38,17 @@
     <!-- Priority Selector -->
     <mat-form-field appearance="outline">
       <mat-label>Priority</mat-label>
-      <mat-select [(ngModel)]="selectedPriority" name="priority">
+      <mat-select [(ngModel)]="task.priority" name="priority">
         <mat-option
           *ngFor="let priority of priorities"
           [value]="priority.value"
         >
           {{ priority.viewValue }}
-          <mat-icon [ngStyle]="{ color: priority.color }">{{
-            priority.icon
-          }}</mat-icon>
+          <mat-icon
+            class="material-symbols-outlined"
+            [ngStyle]="{ color: priority.color }"
+            >{{ priority.icon }}</mat-icon
+          >
         </mat-option>
       </mat-select>
     </mat-form-field>
