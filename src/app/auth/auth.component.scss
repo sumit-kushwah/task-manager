@@ -1,0 +1,40 @@
+div {
+  display: flex;
+  height: 100%;
+  background-image: url("https://images.wallpaperscraft.com/image/single/bird_flight_sky_934827_1280x720.jpg");
+
+  .signin {
+    display: flex;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    g {
+      display: block;
+      cursor: pointer;
+    }
+  }
+
+  .quotes {
+    height: 100%;
+    width: 50%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size:  30px;
+      line-height: 40px;
+      font-weight: 500;
+      color: rgb(184, 5, 5);
+      font-style: italic;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+  }
+
+}
+
