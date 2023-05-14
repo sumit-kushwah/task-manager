@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, Optional } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs/operators';
 
@@ -59,8 +59,10 @@ export class AuthComponent implements OnInit {
 
   async loginWithGoogle() {
     const provider = new GoogleAuthProvider();
-    await signInWithPopup(this.auth, provider);
-    await this.router.navigate(this.redirect);
+    await signInWithRedirect(this.auth, provider);
+    console.log("hello")
+    await this.router.navigate(['/home']);
+    this.detectChanges();
   }
 
   private detectChanges() {

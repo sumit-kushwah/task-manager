@@ -7,19 +7,30 @@ const isUserLoggedIn = (route: ActivatedRouteSnapshot, state: RouterStateSnapsho
   const auth = inject(Auth);
   const user$ = user(auth);
   const router: Router = inject(Router);
-  return user$.pipe(map(user => {
-    if (!user) {
-      return router.parseUrl('/auth');
-      return false;
-    }
-    return true;
-  }));
+
+  if (route.url[0].path === 'auth') {
+    return user$.pipe(map(user => {
+      if (user) {
+        return router.parseUrl('/home');
+      }
+      return true;
+    }));
+  } else {
+    return user$.pipe(map(user => {
+      if (!user) {
+        return router.parseUrl('/auth');
+      }
+      return true;
+    }));
+  }
+
 }
 
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate: [isUserLoggedIn]
   },
   {
     path: 'home',

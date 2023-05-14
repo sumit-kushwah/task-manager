@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
 import { Auth, signOut, user, User } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface Task {
   name: string;
@@ -87,7 +88,7 @@ export class HomeComponent implements OnDestroy {
   constructor(
     public dialog: MatDialog,
     private changeDetectorRef: ChangeDetectorRef,
-
+    private router: Router
   ) {
 
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
@@ -135,7 +136,8 @@ export class HomeComponent implements OnDestroy {
   }
 
   async logout() {
-    return await signOut(this.auth);
+    await signOut(this.auth);
+    this.router.navigate(['/auth']);
   }
 
   ngOnDestroy() {
