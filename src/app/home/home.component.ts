@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
 import { Auth, signOut, user, User } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { FirestoreService } from 'src/services/firestore.service';
 
 export interface Task {
   name: string;
@@ -11,53 +12,22 @@ export interface Task {
   dueDate: Date;
   description: string;
   status: string;
+  repeat: 'weekly' | 'daily' | 'monthly' | 'bi-weekly' | null;
   priority: 'low' | 'medium' | 'high' | 'none';
 }
 export interface Section {
   name: string;
-  id: string;
   tasks: Task[];
 }
 export interface Project {
-  id: string;
   name: string;
   sections: Section[];
 }
 
-const personalProjects: Project[] = [
-  {
-    name: 'Default', id: 'default', sections: [
-      {
-        name: 'All',
-        id: 'default',
-        tasks: []
-      },
-      {
-        name: 'Today',
-        id: 'default',
-        tasks: []
-      },
-      {
-        name: 'Upcoming',
-        id: 'default',
-        tasks: []
-      },
-    ]
-  },
-  { name: 'Personal Project 1', id: 'default', sections: [] },
-  { name: 'Personal Project 2', id: 'default', sections: [] },
-  { name: 'Personal Project 3', id: 'default', sections: [] },
-  { name: 'Personal Project 4', id: 'default', sections: [] },
-]
-
-const workProjects: Project[] = [
-  { name: 'Default', id: 'default', sections: [] },
-  { name: 'Work Project 1', id: 'default', sections: [] },
-  { name: 'Work Project 2', id: 'default', sections: [] },
-  { name: 'Work Project 3', id: 'default', sections: [] },
-  { name: 'Work Project 4', id: 'default', sections: [] },
-  { name: 'Work Project 5', id: 'default', sections: [] },
-]
+export interface Workspace {
+  name: string;
+  projects: Project[],
+}
 
 
 @Component({
@@ -66,7 +36,7 @@ const workProjects: Project[] = [
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
   toolbarTitle = 'Task Manager';
   showFiller = false;
   sideNavOpened = true;
@@ -74,7 +44,12 @@ export class HomeComponent implements OnDestroy {
   selectedWorkspace = 'Personal';
   Workspace: any;
 
-  projectsDetail: { name: string, sections: string[] }[] = personalProjects.map((project) => {
+  workspace: Workspace = {
+    name: 'personal',
+    projects: []
+  }
+
+  projectsDetail: { name: string, sections: string[] }[] = this.workspace.projects.map((project) => {
     return {
       name: project.name,
       sections: project.sections.map((section) => section.name),
@@ -84,11 +59,14 @@ export class HomeComponent implements OnDestroy {
   private auth: Auth = inject(Auth);
   user$ = user(this.auth);
   userSubscription: Subscription;
+  photoURL: string | null | undefined = null;
+  userId: string | undefined = undefined;
 
   constructor(
     public dialog: MatDialog,
     private changeDetectorRef: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private fireStoreService: FirestoreService
   ) {
 
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
@@ -99,6 +77,20 @@ export class HomeComponent implements OnDestroy {
       }
       this.onDetectChanges();
     });
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.userId = this.auth.currentUser?.uid;
+    this.photoURL = this.auth.currentUser?.photoURL;
+    if (this.userId) {
+      await this.fireStoreService.getUserData(this.userId);
+      const userDetail = await this.fireStoreService.getUserMetaDetail(this.userId)
+      if (this.fireStoreService.userData && this.fireStoreService.userData["workspace_" + userDetail?.['workspace']]) {
+        this.workspace = this.fireStoreService.userData["workspace_" + userDetail?.['workspace']];
+      }
+    }
+
+    this.onDetectChanges();
   }
 
   openDialog() {
@@ -113,21 +105,24 @@ export class HomeComponent implements OnDestroy {
   setWorkspace(workspace: string) {
     this.selectedWorkspace = workspace;
     if (workspace === 'Personal') {
-      this.projectsDetail = personalProjects.map((project) => {
-        return {
-          name: project.name,
-          sections: project.sections.map((section) => section.name),
-        };
-      });
+      if (this.fireStoreService.userData["workspace_personal"]) {
+        this.workspace = this.fireStoreService.userData["workspace_personal"];
+      } else {
+        this.workspace = {
+          name: 'personal',
+          projects: []
+        }
+      }
     } else if (workspace === 'Work') {
-      this.projectsDetail = workProjects.map((project) => {
-        return {
-          name: project.name,
-          sections: project.sections.map((section) => section.name),
-        };
-      });
+      if (this.fireStoreService.userData["workspace_work"]) {
+        this.workspace = this.fireStoreService.userData["workspace_work"];
+      } else {
+        this.workspace = {
+          name: 'work',
+          projects: []
+        }
+      }
     }
-
     this.onDetectChanges();
   }
 

@@ -19,9 +19,23 @@
   </div>
 </mat-expansion-panel>
 
-<div class="add-section">
-  <button mat-icon-button>
-    <mat-icon class="material-symbols-outlined">add</mat-icon>
-  </button>
-  <p>Add Project</p>
+<div (click)="editable = !editable" *ngIf="!editable">
+  <div class="add-section">
+    <button mat-icon-button>
+      <mat-icon class="material-symbols-outlined">add</mat-icon>
+    </button>
+    <p>Add Project</p>
+  </div>
+</div>
+
+<div *ngIf="editable">
+  <div>
+    <mat-form-field appearance="outline">
+      <input type="text" matInput [(ngModel)]="newProjectName" />
+    </mat-form-field>
+    <div class="action-buttons">
+      <button mat-button (click)="editable = !editable">Cancel</button>
+      <button mat-button (click)="onAddNewProject()">Add</button>
+    </div>
+  </div>
 </div>

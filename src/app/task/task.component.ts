@@ -16,6 +16,7 @@ export class TaskComponent {
     dueDate: new Date(),
     description: '',
     status: '',
+    repeat: null,
     priority: 'none',
   };
 

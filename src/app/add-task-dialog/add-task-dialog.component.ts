@@ -24,6 +24,7 @@ export class AddTaskDialogComponent implements OnInit {
     dueDate: new Date(),
     description: '',
     status: '',
+    repeat: 'weekly',
     priority: 'none',
   }
 

@@ -37,9 +37,16 @@
     matTooltip="{{ userLoggedIn ? 'Open Profile Menu' : 'Login' }}"
     aria-label="Example icon-button with share icon"
   >
-    <mat-icon class="material-symbols-outlined">{{
-      userLoggedIn ? "person" : "login"
-    }}</mat-icon>
+    <img
+      style="border-radius: 50%"
+      *ngIf="photoURL"
+      src="{{ photoURL }}"
+      alt="profile_photo"
+    />
+
+    <mat-icon *ngIf="!photoURL" class="material-symbols-outlined"
+      >person</mat-icon
+    >
   </button>
 </mat-toolbar>
 

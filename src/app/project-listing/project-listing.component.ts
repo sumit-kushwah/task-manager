@@ -9,4 +9,17 @@ export class ProjectListingComponent {
   @Input() projects: { name: string, sections: string[] }[] = [];
 
   panelOpenState = false;
+
+  editable = false;
+
+  newProjectName = "";
+
+  onAddNewProject() {
+    if (this.newProjectName != '') {
+      this.projects.push({ name: this.newProjectName, sections: [] });
+      this.newProjectName = '';
+    }
+
+  }
+
 }

@@ -5,6 +5,9 @@ import { ProjectListingComponent } from './project-listing.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatExpansionModule,
     MatIconModule,
-    MatButtonModule
+    FormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [ProjectListingComponent]
 })
